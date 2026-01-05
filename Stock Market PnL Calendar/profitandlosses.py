@@ -50,7 +50,7 @@ def heat_color(value, vmax):
                         POS_PEAK if value > 0 else NEG_PEAK, t)
 
 def parse_amount(text: str) -> float:
-    """Accept +$100, $-55.75, 1,200, (250), +1,000.00."""
+    """Accept +100, -100, 100, (100), -$100, $100"""
     if text is None:
         raise ValueError("empty")
     s = text.strip().replace("$", "").replace(",", "").replace("+", "")
@@ -275,7 +275,7 @@ class PnLCalendar:
             try:
                 num = parse_amount(txt)
             except ValueError:
-                messagebox.showerror("Invalid Input", "Enter -125.5, +$100, 1,200 or (250)")
+                messagebox.showerror("Invalid Input", "+100, -100, 100, (100), -$100, $100")
                 return
             self.set_value(year, month, day, num)
             win.destroy()
