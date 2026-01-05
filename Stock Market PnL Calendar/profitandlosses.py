@@ -7,11 +7,11 @@ import math
 import os
 import json
 
-# ----------------- Colors -----------------
+# Colors 
 DARK_BG        = "#0b1220"
 HEADER_BG      = "#0f1730"
 HEADER_FG      = "#e6e8ed"
-GRID_BG        = "#ffffff"
+GRID_BG        = "#FAF2F2"
 GRID_LINE      = "#e6e8ef"
 DAY_TEXT       = "#0b1220"
 VAL_TEXT       = "#0b1220"
@@ -19,20 +19,26 @@ BTN_BG         = "#1a2442"
 BTN_FG         = "#ffffff"
 BTN_BG_ACTIVE  = "#223058"
 
+# Heatmap color endpoints
 POS_BASE = (231, 248, 239)
 POS_PEAK = (32, 164, 112)
 NEG_BASE = (255, 236, 239)
 NEG_PEAK = (220, 38, 38)
 
+# Smooth heatmap coloring
 def lerp(a, b, t): return a + (b - a) * t
+
 def clamp01(x): return max(0.0, min(1.0, x))
+
 def rgb_to_hex(rgb):
     r, g, b = [int(round(v)) for v in rgb]
     return f"#{r:02x}{g:02x}{b:02x}"
+
 def interp_color(base, peak, t):
     return rgb_to_hex((lerp(base[0], peak[0], t),
                        lerp(base[1], peak[1], t),
                        lerp(base[2], peak[2], t)))
+    
 def heat_color(value, vmax):
     if value == 0:
         return GRID_BG
@@ -52,8 +58,8 @@ def parse_amount(text: str) -> float:
         s = "-" + s[1:-1]
     return float(s)
 
-class WebullPnLCalendar:
-    # -------- Persistence paths --------
+class PnLCalendar:
+    # Persistence paths 
     def _data_dir(self):
         return os.path.join(os.path.expanduser("~"), ".pnl_calendar")
     def _data_path(self):
@@ -62,17 +68,18 @@ class WebullPnLCalendar:
         return f"{y:04d}-{m:02d}"
 
     def __init__(self, root):
+        # Root window setup
         self.root = root
-        self.root.title("P&L Calendar (Webull-style)")
+        self.root.title("P&L Calendar")
         self.root.configure(bg=DARK_BG)
         self.today = date.today()
         self.cur_year = tk.IntVar(value=self.today.year)
         self.cur_month = tk.IntVar(value=self.today.month)
 
-        self.data = {}
+        self.data = {} # Stores all PnL data
         self._ensure_data_loaded()
 
-        # ttk styles (fix macOS white-on-white)
+        # ttk styles
         self.style = ttk.Style()
         try:
             self.style.theme_use("clam")
@@ -89,7 +96,7 @@ class WebullPnLCalendar:
         self.style.configure("WBDark.TFrame", background=DARK_BG)
         self.style.configure("WB.TEntry", fieldbackground="#ffffff", foreground=DAY_TEXT)
 
-        self.cells = {}  # {(y,m,d): {'frame','day_lbl','val_lbl','value'}}
+        self.cells = {} 
 
         # Header
         self.header = ttk.Frame(root, style="WBHeader.TFrame")
@@ -109,10 +116,10 @@ class WebullPnLCalendar:
 
         self.render_calendar()
 
-        # Save on close (we also autosave on edits)
+        # Save on close 
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
 
-    # ---------- persistence ----------
+    # persistence 
     def _ensure_data_loaded(self):
         os.makedirs(self._data_dir(), exist_ok=True)
         path = self._data_path()
@@ -122,17 +129,20 @@ class WebullPnLCalendar:
                     self.data = json.load(f)
             except Exception:
                 self.data = {}
+                
     def _save_data(self):
+        # Avoid corruption
         path = self._data_path()
         tmp = path + ".tmp"
         with open(tmp, "w", encoding="utf-8") as f:
             json.dump(self.data, f, ensure_ascii=False, indent=2)
         os.replace(tmp, path)
+        
     def on_close(self):
         self._save_data()
         self.root.destroy()
 
-    # ---------- UI ----------
+    # UI 
     def build_header(self):
         left = ttk.Frame(self.header, style="WBHeader.TFrame")
         left.pack(side="left", padx=12, pady=10)
@@ -165,7 +175,7 @@ class WebullPnLCalendar:
         right.pack(side="right")
         ttk.Button(right, text="Clear Month", style="WB.TButton", command=self.clear_month).pack(side="right", padx=6)
 
-    # ---------- Calendar ----------
+    # Calendar 
     def month_title(self):
         return f"{calendar.month_name[int(self.cur_month.get())]} {int(self.cur_year.get())}"
     def prev_month(self):
@@ -211,7 +221,6 @@ class WebullPnLCalendar:
                 day_lbl = tk.Label(cell, text=str(day.day), bg=GRID_BG, fg=day_fg, font=("Arial", 9, "bold"))
                 day_lbl.place(x=8, y=6)
 
-                # BIG, centered value
                 val_lbl = tk.Label(cell, text="", bg=GRID_BG, fg=VAL_TEXT, font=("Arial", 13, "bold"))
                 val_lbl.place(relx=0.5, rely=0.5, anchor="center")
 
@@ -236,7 +245,7 @@ class WebullPnLCalendar:
 
         self.recompute_stats_and_colors()
 
-    # ---------- Editing & coloring ----------
+    # Editing & coloring 
     def open_editor(self, year, month, day):
         cur = self.cells.get((year, month, day), {})
         cur_val = cur.get("value")
@@ -343,7 +352,7 @@ class WebullPnLCalendar:
         self._save_data()
         self.recompute_stats_and_colors()
 
-    # ---------- CSV import/export (optional) ----------
+    # CSV import/export
     def save_csv(self):
         y, m = int(self.cur_year.get()), int(self.cur_month.get())
         fname = filedialog.asksaveasfilename(defaultextension=".csv",
@@ -396,7 +405,7 @@ def main():
         windll.shcore.SetProcessDpiAwareness(1)
     except Exception:
         pass
-    app = WebullPnLCalendar(root)
+    app = PnLCalendar(root)
     root.minsize(760, 520)
     root.mainloop()
 
