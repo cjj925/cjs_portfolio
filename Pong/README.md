@@ -1,6 +1,5 @@
 # Pong
 
-## Overview
 This project is a simple pong game using Python's standard turtle graphics library. In this game two players go head-to-head by controlling the y coordinate of paddles to bounce a ball back and forth until a point is scored, similar to air hockey.
 
 ## Controls
