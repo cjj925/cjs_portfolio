@@ -20,9 +20,9 @@
 
 ## How to Run
 
- - First you must create a text file which you want to encrypt in the downloaded ShiftingCipher folder
+* First you must create a text file which you want to encrypt in the downloaded ShiftingCipher folder
 
-Run program in terminal: python shiftingcipher.py
+* Run program in terminal: python shiftingcipher.py
 
 Printed menu: 
 == Shifting Cipher ==
