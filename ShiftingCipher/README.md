@@ -15,9 +15,6 @@
 * Key repeats until it matches length of text
 * Preserves all characters (" ", and " ' ")
 
-## Requirements
-* Python 3.9+
-
 ## How to Run
 
 * First you must create a text file which you want to encrypt in the downloaded ShiftingCipher folder
@@ -44,5 +41,8 @@
   4. Enter the same exact encryption key
 
 * The decrypted text will now be stored in the output file
+
+## Requirements
+* Python 3.9+
 
 
