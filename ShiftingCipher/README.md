@@ -24,26 +24,25 @@
 
 * Run program in terminal: python shiftingcipher.py
 
-Printed menu: 
-== Shifting Cipher ==
-1. Encrypt a file
-2. Decrypt a file
-3. Quit
+* Printed menu:
+  1. Encrypt a file
+  2. Decrypt a file
+  3. Quit
 
-Encrypting file steps:
-1. Choose option 1
-2. Enter the text file name you created
-3. Enter a name for the output file that will store the encrypted message
-4. Enter encryption key
+* Encrypting file steps:
+  1. Choose option 1
+  2. Enter the text file name you created
+  3. Enter a name for the output file that will store the encrypted message
+  4. Enter encryption key
 
-The encrypted text will now be stored in the output file
+* The encrypted text will now be stored in the output file
 
-Decrypting file steps:
-1. Choose option 2
-2. Enter the encrypted file's name
-3. Enter a name for the output file that will store the decrypted message
-4. Enter the same exact encryption key
+* Decrypting file steps:
+  1. Choose option 2
+  2. Enter the encrypted file's name
+  3. Enter a name for the output file that will store the decrypted message
+  4. Enter the same exact encryption key
 
-The decrypted text will now be stored in the output file
+* The decrypted text will now be stored in the output file
 
 
