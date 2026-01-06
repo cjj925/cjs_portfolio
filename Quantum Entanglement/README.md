@@ -1,6 +1,5 @@
 # Quantum Entanglement Simulation (Qiskit)
 
-## Overview
 This program simulates a basic quantum circuit using Qiskit that creates and measures entanglement between two qubits. The circuit is simulated using Qiskit Aer.
 
 This project illustrates fundamental quantum computing concepts such as superposition, entanglement, noise modeling, and quantum measurement in a short and simple way.
