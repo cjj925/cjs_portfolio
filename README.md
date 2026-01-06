@@ -1,1 +1,4 @@
-# cjs_python_portfolio
+# CJ Rinaldi's Python Portfolio
+
+## Projects
+* **Atbash Cipher*
