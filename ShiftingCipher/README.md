@@ -1,8 +1,9 @@
 # Shifting Cipher
 
-## Shifting Cipher is a simple file encryption and decryption program written in Python. It uses a character shifting algorithm where each character is shifted by a corresponding character which comes from a user-provided key. This is a symmetric cipher, meaning the same key is used for both encryption and decryption.
+## Overview
+Shifting Cipher is a simple file encryption and decryption program written in Python. It uses a character shifting algorithm where each character is shifted by a corresponding character which comes from a user-provided key. This is a symmetric cipher, meaning the same key is used for both encryption and decryption.
 
-## How it Works
+## How It Works
 * Each character in the input text is converted to its corresponding Unicode value
 * Each character in the key is also converted to its corresponding Unicode value
 * The key repeats as much as necessary to match the length of the text
