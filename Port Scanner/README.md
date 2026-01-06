@@ -1,6 +1,5 @@
 # Port Scanner
 
-## Overview
 This project is a simple port scanner written in Python. It scans a range of TCP ports with a target host to determine which ports are open and labels common services.
 
 ## How it Works
