@@ -1,6 +1,5 @@
 # P&L Calendar
 
-## Overview
 This project is a application that tracks daily profits and losses in the stock market using a calendar with heatmap coloring. It was built with Python and Tkinter.
 
 This program is designed to simply track trades made in the stock market with a clean and simple UI, making it ideal for beginner traders.
