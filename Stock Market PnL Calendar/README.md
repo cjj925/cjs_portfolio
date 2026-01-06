@@ -1,12 +1,12 @@
-P&L Calendar
+# P&L Calendar
 
-This project is a application that tracks daily profits and losses in the stock market using a calendar with heatmap coloring. It was built with Python and Tkinter.
+## This project is a application that tracks daily profits and losses in the stock market using a calendar with heatmap coloring. It was built with Python and Tkinter.
 
-This program is designed to simply track trades made in the stock market with a clean and simple UI, making it ideal for beginner traders.
+## This program is designed to simply track trades made in the stock market with a clean and simple UI, making it ideal for beginner traders.
 
-Features
+## Features
 * Monthly calendar view (Mon-Sun)
-*  Heatmap Coloring
+* Heatmap Coloring
    - Green for positive numbers
    - Red for negative numbers
    - Color intensity is scaled relative to the largest absolute PnL in that month
@@ -22,10 +22,10 @@ Features
 * Button to jump to today's date
 * Button to clear months profits and losses
 
-Requirements
+## Requirements
 * Python 3.9+
 
-Credit
+## Credit
 * Inspired by Webull's P&L calendar UI
 
 
